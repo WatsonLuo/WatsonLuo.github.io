@@ -169,10 +169,33 @@
             <p>$ git config –global user.name “Luojingyi”</p>
 <p>$ git config –global user.email “<a href="mailto:295579587@qq.com" target="_blank" rel="noopener">295579587@qq.com</a>“</p>
 <p>$npm install hexo-cli -g</p>
-<p>$ hexo init<br>$ hexo install<br>$ npm install hexo-deployer-git –save</p>
+<p>$ hexo init<br>$ hexo install<br>$ npm install hexo-deployer-git –save #装插件</p>
 <p>type: git<br>repo: <a href="https://github.com/WatsonLuo/WatsonLuo.github.io.git" target="_blank" rel="noopener">https://github.com/WatsonLuo/WatsonLuo.github.io.git</a><br>branch: master</p>
-<p>$ hexo g -d</p>
-<p><a href="https://watsonluo.github.io/" target="_blank" rel="noopener">https://watsonluo.github.io/</a></p>
+<p>$ hexo g -d #发布</p>
+<p><em>config.yml文件需要将uml改为下述地址，否则主题无法加载。</em><br><a href="https://watsonluo.github.io/">https://watsonluo.github.io/</a></p>
+<blockquote>
+<p>以下为hexo指令说明：</p>
+</blockquote>
+<p>init<br>$ hexo init [folder]<br>新建一个网站。如果没有设置 folder ，Hexo 默认在目前的文件夹建立网站。</p>
+<p>new<br>$ hexo new [layout] <title><br>新建一篇文章。<br>如果没有设置 layout 的话，默认使用 _config.yml中的default_layout参数代替。_<br>如果标题包含空格的话，请使用引号括起来。</title></p>
+<p>$ hexo new “post title with whitespace”<br>generate<br>$ hexo generate<br>生成静态文件。</p>
+<p>选项    描述<br>-d, –deploy    文件生成后立即部署网站<br>-w, –watch    监视文件变动<br>该命令可以简写为</p>
+<p>$ hexo g<br>publish<br>$ hexo publish [layout] <filename><br>发表草稿。</filename></p>
+<p>server<br>$ hexo server<br>启动服务器。默认情况下，访问网址为： <a href="http://localhost:4000/。" target="_blank" rel="noopener">http://localhost:4000/。</a></p>
+<p>选项    描述<br>-p, –port    重设端口<br>-s, –static    只使用静态文件<br>-l, –log    启动日记记录，使用覆盖记录格式<br>deploy<br>$ hexo deploy<br>部署网站。</p>
+<p>参数    描述<br>-g, –generate    部署之前预先生成静态文件<br>该命令可以简写为：</p>
+<p>$ hexo d<br>render<br>$ hexo render <file1> [file2] …<br>渲染文件。</file1></p>
+<p>参数    描述<br>-o, –output    设置输出路径<br>migrate<br>$ hexo migrate <type><br>从其他博客系统 迁移内容。</type></p>
+<p>clean<br>$ hexo clean<br>清除缓存文件 (db.json) 和已生成的静态文件 (public)。</p>
+<p>在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</p>
+<p>list<br>$ hexo list <type><br>列出网站资料。</type></p>
+<p>version<br>$ hexo version<br>显示 Hexo 版本。</p>
+<p>选项<br>安全模式<br>$ hexo –safe<br>在安全模式下，不会载入插件和脚本。当您在安装新插件遭遇问题时，可以尝试以安全模式重新执行。</p>
+<p>调试模式<br>$ hexo –debug<br>在终端中显示调试信息并记录到 debug.log。当您碰到问题时，可以尝试用调试模式重新执行一次，并 提交调试信息到 GitHub。</p>
+<p>简洁模式<br>$ hexo –silent<br>隐藏终端信息。</p>
+<p>自定义配置文件的路径<br>$ hexo –config custom.yml<br>自定义配置文件的路径，执行后将不再使用 <em>config.yml。</em></p>
+<p>显示草稿<br>$ hexo –draft<br>显示 source/<em>drafts 文件夹中的草稿文章。</em></p>
+<p>自定义 CWD<br>$ hexo –cwd /path/to/cwd<br>自定义当前工作目录（Current working directory）的路径。</p>
 
         </div>
     
