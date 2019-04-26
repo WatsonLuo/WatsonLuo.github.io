@@ -11,9 +11,9 @@
     <!--Description-->
     
         <meta name="description" content="方法一(推荐)：
-首先把_config.yml文件中的post_asset_folder更改为true2.3.4.
-
-解释：资源文件夹资源（Asset）代表source文件夹中除了文章以外的所有文件，例如图片、CSS、JS文件等。比方说，如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放">
+首先把_config.yml文件中的post_asset_folder更改为true
+下载相应插件，指令：npm install hexo-asset-image --save网址：https://github.com/dangxuandev/hexo-asset-image
+4.">
     
 
     <!--Author-->
@@ -160,7 +160,7 @@
             
             
                 <span class="category">
-                    <a href="/categories/搭博客/">搭博客</a>
+                    <a href="/categories/博客/">博客</a>
                 </span>
             
         </div>
@@ -172,13 +172,15 @@
         
 
         <!-- Post Content -->
-        <img src="/2019/04/26/hexo添加图片/杀生丸.jpg" title="杀生丸~">
-<img src="/2019/04/26/hexo添加图片/夜精灵.jpg" title="夜精灵~">
-<p><img src="/水君.jpg" alt="水君帅照" title="水君~"></p>
+        <img src="/2019/04/26/hexo添加图片/2019/04/26/hexo添加图片/杀生丸.jpg" title="杀生丸~">
+<img src="/2019/04/26/hexo添加图片/2019/04/26/hexo添加图片/夜精灵.jpg" title="夜精灵~">
+<p><img src="/2019/04/26/hexo添加图片/水君.jpg" alt="水君帅照" title="水君~"></p>
 <h1 id="方法一-推荐-："><a href="#方法一-推荐-：" class="headerlink" title="方法一(推荐)："></a>方法一(推荐)：</h1><ol>
-<li>首先把_config.yml文件中的post_asset_folder更改为true<br>2.<br>3.<br>4.</li>
+<li>首先把_config.yml文件中的post_asset_folder更改为true</li>
+<li>下载相应插件，指令：<code>npm install hexo-asset-image --save</code><br>网址：<a href="https://github.com/dangxuandev/hexo-asset-image" target="_blank" rel="noopener">https://github.com/dangxuandev/hexo-asset-image</a></li>
+<li>4.</li>
 </ol>
-<h1 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h1><p>资源文件夹<br>资源（Asset）代表source文件夹中除了文章以外的所有文件，例如图片、CSS、JS文件等。<br>比方说，如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 source/images 文件夹中。<br>然后通过类似于 <img src="/images/image.jpg" alt> 的方法访问它们。</p>
+<h1 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h1><p>资源文件夹<br>资源（Asset）代表source文件夹中除了文章以外的所有文件，例如图片、CSS、JS文件等。<br>比方说，如果你的Hexo项目中只有少量图片，那最简单的方法就是将它们放在 source/images 文件夹中。<br>然后通过类似于 <img src="/2019/04/26/hexo添加图片/images/image.jpg" alt> 的方法访问它们。</p>
 <p>文章资源文件夹<br>对于那些想要更有规律地提供图片和其他资源以及想要将他们的资源分布在各个文章上的人来说，Hexo也提供了更组织化的方式来管理资源。<br>这个稍微有些复杂但是管理资源非常方便的功能可以通过将 config.yml 文件中的 post_asset_folder 选项设为 true 来打开。</p>
 <p>_config.yml<br>post_asset_folder: true<br>当资源文件管理功能打开后，Hexo将会在你每一次通过 hexo new [layout] <title> 命令创建新文章时自动创建一个文件夹。<br>这个资源文件夹将会有与这个markdown文件一样的名字。<br>将所有与你的文章有关的资源放在这个关联文件夹中之后，你可以通过相对路径来引用它们，这样你就得到了一个更简单而且方便得多的工作流。</title></p>
 <p>相对路径引用的标签插件<br>通过常规的 markdown 语法和相对路径来引用图片和其它资源可能会导致它们在存档页或者主页上显示不正确。<br>在Hexo 2时代，社区创建了很多插件来解决这个问题。<br>但是，随着Hexo 3 的发布，许多新的标签插件被加入到了核心代码中。这使得你可以更简单地在文章中引用你的资源。</p>
@@ -228,7 +230,7 @@
             </li>
             
             <li>
-                <a class="footer-post" href="/2019/04/25/如果在struct-class中动态申请空间，sizeof-的结果/">如果在struct/class中动态申请空间，si</a>
+                <a class="footer-post" href="/2019/04/25/如果在struct-class中动态申请空间，sizeof-的结果/">如果在struct\\class中动态申请空间，s</a>
             </li>
             
             <li>
@@ -250,19 +252,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/面试/">面试</a>
-        </li>
-        
-        <li>
             <a class="footer-post" href="/categories/搭博客/">搭博客</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/博客/">博客</a>
+            <a class="footer-post" href="/categories/面试/">面试</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/计算机网络/">计算机网络</a>
+            <a class="footer-post" href="/categories/C-C/">C\/C++</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/博客/">博客</a>
         </li>
         
     </ul>
