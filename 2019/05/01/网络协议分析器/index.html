@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh_CH">
+<head><meta name="generator" content="Hexo 3.8.0">
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="author" content="WatsonLuo">
+
+
+
+<meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络协议分析器">
+<meta property="og:url" content="https://WatsonLuo.github.io/2019/05/01/网络协议分析器/index.html">
+<meta property="og:site_name" content="罗小芮的发家之路">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:locale" content="zh_CH">
+<meta property="og:updated_time" content="2019-05-01T04:40:53.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络协议分析器">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="罗小芮的发家之路" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>网络协议分析器 | 罗小芮的发家之路</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/二哈.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">WatsonLuo</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">总有一天我也会变成大佬的！</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload>
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class="no-result">No results found <i class="fa fa-spinner fa-pulse"></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/博客/">博客</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">中国民航大学计算机科学与技术专业程序媛~编程虐我千百遍，我待编程如初恋;</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">WatsonLuo</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/二哈.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">WatsonLuo</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">总有一天我也会变成大佬的！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
+</nav>
+      <div class="body-wrap"><article id="post-网络协议分析器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/01/网络协议分析器/" class="article-date">
+      <time datetime="2019-05-01T04:38:49.000Z" itemprop="datePublished">2019-05-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网络协议分析器
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+    </div>
+
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"pch.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"pcap.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> pack(2)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span>   <span class="keyword">char</span>    <span class="keyword">u8_t</span>;        <span class="comment">/*无符号8比特长度类型*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span>   <span class="keyword">short</span>   <span class="keyword">u16_t</span>;       <span class="comment">/*无符号16比特长度类型*/</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span>   <span class="keyword">long</span>    <span class="keyword">u32_t</span>;       <span class="comment">/*无符号32比特长度类型*/</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">eth_addr</span></span></span><br><span class="line"><span class="class">&#123;</span><span class="keyword">u8_t</span> addr[<span class="number">6</span>];&#125;;<span class="comment">//48位以太网地址</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showMac</span><span class="params">(struct eth_addr addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%02x:%02x:%02x:%02x:%02x:%02x\n"</span>, addr.addr[<span class="number">0</span>], addr.addr[<span class="number">1</span>], addr.addr[<span class="number">2</span>], addr.addr[<span class="number">3</span>], addr.addr[<span class="number">4</span>], addr.addr[<span class="number">5</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showIP</span><span class="params">(struct in_addr addr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d.%d.%d.%d"</span>, addr.S_un.S_un_b.s_b1, addr.S_un.S_un_b.s_b2, addr.S_un.S_un_b.s_b3, addr.S_un.S_un_b.s_b4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ether_header</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">u8_t</span> ether_dhost[<span class="number">6</span>];    <span class="comment">/* 目的以太网地址 */</span></span><br><span class="line">	<span class="keyword">u8_t</span> ether_shost[<span class="number">6</span>];    <span class="comment">/* 源以太网地址 */</span></span><br><span class="line">	<span class="keyword">u16_t</span> ether_type;       <span class="comment">/* 以太网类型 */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ARPHeader</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">u16_t</span> hard;<span class="comment">//硬件类型</span></span><br><span class="line">	<span class="keyword">u16_t</span> type;<span class="comment">//上层协议类型</span></span><br><span class="line">	<span class="keyword">u8_t</span> macLen;<span class="comment">//硬件地址长度</span></span><br><span class="line">	<span class="keyword">u8_t</span> IPLen;<span class="comment">//协议地址长度</span></span><br><span class="line">	<span class="keyword">u16_t</span> operation;<span class="comment">//操作码0x1表示请求包，0x2表示应答包</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">eth_addr</span> <span class="title">srcMac</span>;</span><span class="comment">//发送端硬件地址</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">srcIP</span>;</span><span class="comment">//发送端逻辑地址</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">eth_addr</span> <span class="title">desMac</span>;</span><span class="comment">//目的端硬件地址(请求帧中不要求)</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">desIP</span>;</span><span class="comment">//目的端逻辑地址</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//IP数据帧头</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">IPHeader</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">/*IP报文固定字段有20字节，可选项0~40，IP报文最多60字节</span></span><br><span class="line"><span class="comment">	IP选项（可有）</span></span><br><span class="line"><span class="comment">	数据*/</span></span><br><span class="line">	<span class="keyword">u8_t</span> vision_Headerlength;<span class="comment">//版本号4	首部长度4（length*4得字节单位）</span></span><br><span class="line">	<span class="keyword">u8_t</span> servetype;<span class="comment">//服务类型8（3位优先域，4位服务类型，1位未用位置0；服务类型分别为：最小时延，最大吞吐量，最高可靠性，最小费用。这四位至多一位能被置1）</span></span><br><span class="line">	<span class="keyword">u16_t</span> length;<span class="comment">//总长度16</span></span><br><span class="line">	<span class="keyword">u16_t</span> identification;<span class="comment">//标识16（ID值，如果分片，用来确认是否为同一数据包）</span></span><br><span class="line">	<span class="keyword">u16_t</span> flag_offset;<span class="comment">//标志位3（1位保留，2为不分片，3表示后面还有分片）偏移量13</span></span><br><span class="line">	<span class="comment">//（如果数据包是一个分片包，该域指明了当前分片包应该位于数据包的什么位置上。该域的值单位为8字节）</span></span><br><span class="line">	<span class="keyword">u8_t</span> liveTime;<span class="comment">//生存时间8</span></span><br><span class="line">	<span class="keyword">u8_t</span> protocol;<span class="comment">//高层协议类型8</span></span><br><span class="line">	<span class="keyword">u16_t</span> checksum = <span class="number">0</span>;<span class="comment">//首部检验和16（只对头部内容进行错误检测）</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">srcIP</span>;</span><span class="comment">//源IP地址32</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">desIP</span>;</span><span class="comment">//目的IP地址32</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//伪首部</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">pseudoHeader</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">/*　 伪首部共有12字节，包含IP首部的一些字段，有如下信息：</span></span><br><span class="line"><span class="comment">	32位源IP地址</span></span><br><span class="line"><span class="comment">	32位目的IP地址</span></span><br><span class="line"><span class="comment">	8位保留字节(置0)、8位传输层协议号(TCP是6，UDP是17)、16位TCP报文长度(TCP首部+数据)。*/</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">srcIP</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">desIP</span>;</span></span><br><span class="line">	<span class="keyword">u8_t</span> reserve = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">u8_t</span> protocal;</span><br><span class="line">	<span class="keyword">u16_t</span> totalLength;</span><br><span class="line">	pseudoHeader(struct in_addr src,struct in_addr des,<span class="keyword">u8_t</span> pro,<span class="keyword">u16_t</span> length)</span><br><span class="line">	&#123;</span><br><span class="line">		srcIP = src;</span><br><span class="line">		desIP = des;</span><br><span class="line">		protocal = pro;</span><br><span class="line">		totalLength = htons(length);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//UDP数据帧头</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">UDPHeader</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">/*UDP和TCP校验和：伪首部+首部8字节+数据</span></span><br><span class="line"><span class="comment">	伪首部不参与传输，但是参加校验和的计算*/</span></span><br><span class="line">	<span class="keyword">u16_t</span> srcPort;<span class="comment">//源端口16,在需要对方回信时选用，不需要时可用全0</span></span><br><span class="line">	<span class="keyword">u16_t</span> desPort;<span class="comment">//目的端口16</span></span><br><span class="line">	<span class="keyword">u16_t</span> length;<span class="comment">//最小为8，仅有首部</span></span><br><span class="line">	<span class="keyword">u16_t</span> checksum = <span class="number">0</span>;<span class="comment">//检验和16</span></span><br><span class="line">	<span class="comment">//u8_t *data;//数据（必须进行填充使数据为16位倍数）</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//TCP数据帧头</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TCPHeader</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="comment">//首部长度20～60字节</span></span><br><span class="line">	<span class="keyword">u16_t</span> srcPort;<span class="comment">// 源端口16</span></span><br><span class="line">	<span class="keyword">u16_t</span> desPort;<span class="comment">// 目的端口16</span></span><br><span class="line">	<span class="keyword">u32_t</span> seqNumber;</span><br><span class="line">	<span class="keyword">u32_t</span> ackNumber;</span><br><span class="line">	<span class="keyword">u16_t</span> headerLength_reserved_control;</span><br><span class="line">	<span class="keyword">u16_t</span> windowSize;</span><br><span class="line">	<span class="keyword">u16_t</span> checksum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">u16_t</span> urgentPointer = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">u16_t</span> calculateChecksum(<span class="keyword">void</span> *header, <span class="keyword">void</span>* pseudo = <span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> result = <span class="number">0</span>;<span class="comment">//32字节</span></span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	<span class="keyword">int</span> flag = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (pseudo == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;num = (*((<span class="keyword">u8_t</span>*)header) &amp; <span class="number">0x0F</span>) * <span class="number">4</span>;&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		num = ntohs(*((<span class="keyword">u16_t</span>*)pseudo + <span class="number">5</span>));</span><br><span class="line">		<span class="keyword">if</span> (num % <span class="number">2</span>)flag = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num / <span class="number">2</span>; i++)</span><br><span class="line">	&#123;result += *((<span class="keyword">u16_t</span>*)header + i);&#125;</span><br><span class="line">	<span class="keyword">if</span> (flag == <span class="number">1</span>)result += *((<span class="keyword">u8_t</span>*)header + num - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span> &amp;&amp; pseudo != <span class="literal">NULL</span>; i++)</span><br><span class="line">	&#123;result += *((<span class="keyword">u16_t</span>*)pseudo + i);&#125;</span><br><span class="line">	result += result &gt;&gt; <span class="number">16</span>;</span><br><span class="line">	result = result &amp; <span class="number">0xFFFF</span>;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ARPAnalysis</span><span class="params">(<span class="keyword">const</span> u_char *packet_content)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ARPHeader</span>* <span class="title">arp</span> = (<span class="title">struct</span> <span class="title">ARPHeader</span>*)<span class="title">packet_content</span>;</span></span><br><span class="line">	<span class="comment">//char sendBuf[100];</span></span><br><span class="line">	<span class="comment">//inet_ntop(AF_INET, (void*)&amp;arp-&gt;srcIP, sendBuf, 16);</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n-----------    ARP协议解析开始   ------------\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"硬件类型为：\n"</span>); <span class="keyword">if</span> (arp-&gt;hard == <span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">"以太网\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"上层协议类型为：\n"</span>); <span class="keyword">if</span> (arp-&gt;type == <span class="number">0x0800</span>)<span class="built_in">printf</span>(<span class="string">"IP协议\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"硬件地址长度%x\n"</span>, arp-&gt;macLen);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"协议地址长度%x\n"</span>, arp-&gt;IPLen);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"发送端硬件地址\n"</span>); showMac(arp-&gt;srcMac);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"目的端硬件地址\n"</span>); showMac(arp-&gt;desMac);</span><br><span class="line">	<span class="keyword">if</span> (ntohs(arp-&gt;operation) == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"谁的IP地址是"</span>); showIP(arp-&gt;srcIP);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"，请告诉"</span>); showIP(arp-&gt;desIP);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (ntohs(arp-&gt;operation) == <span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"IP地址"</span>); showIP(arp-&gt;desIP);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"在"</span>); showMac(arp-&gt;srcMac);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n-----------    ARP协议解析结束   ------------\n"</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TCPAnalysis</span><span class="params">(<span class="keyword">const</span> u_char *packet_content, struct pseudoHeader pseudo)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TCPHeader</span>* <span class="title">tcp</span> = (<span class="title">struct</span> <span class="title">TCPHeader</span>*)<span class="title">packet_content</span>;</span></span><br><span class="line">	<span class="comment">//char sendBuf[100];</span></span><br><span class="line">	<span class="comment">//inet_ntop(AF_INET, (void*)&amp;arp-&gt;srcIP, sendBuf, 16);</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n-----------    TCP协议解析开始   ------------\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"源端口号：%u\n"</span>, ntohs(tcp-&gt;srcPort));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"目的端口号：%u\n"</span>, ntohs(tcp-&gt;desPort));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"序列号为：%u\n"</span>, ntohl(tcp-&gt;seqNumber));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"确认号为：%u\n"</span>, ntohl(tcp-&gt;ackNumber));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"首部长度为：%u\n"</span>, (ntohs(tcp-&gt;headerLength_reserved_control) &gt;&gt; <span class="number">12</span>) * <span class="number">4</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"控制字：\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"URG：%d\n"</span>, (ntohs(tcp-&gt;headerLength_reserved_control) &amp; <span class="number">0x0020</span>) &gt;&gt; <span class="number">5</span>);<span class="comment">//0000 0000 0010 0000;0x0020 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"ACK：%d\n"</span>, (ntohs(tcp-&gt;headerLength_reserved_control) &amp; <span class="number">0x0010</span>) &gt;&gt; <span class="number">4</span>);<span class="comment">//0000 0000 0010 0000;0x0020 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"PSH：%d\n"</span>, (ntohs(tcp-&gt;headerLength_reserved_control) &amp; <span class="number">0x0008</span>) &gt;&gt; <span class="number">3</span>);<span class="comment">//0000 0000 0010 0000;0x0020 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"RST：%d\n"</span>, (ntohs(tcp-&gt;headerLength_reserved_control) &amp; <span class="number">0x0004</span>) &gt;&gt; <span class="number">2</span>);<span class="comment">//0000 0000 0010 0000;0x0020 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"SYN：%d\n"</span>, (ntohs(tcp-&gt;headerLength_reserved_control) &amp; <span class="number">0x0002</span>) &gt;&gt; <span class="number">1</span>);<span class="comment">//0000 0000 0010 0000;0x0020 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"FIN：%d\n"</span>, ntohs(tcp-&gt;headerLength_reserved_control) &amp; <span class="number">0x0001</span>);<span class="comment">//0000 0000 0010 0000;0x0020 </span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"窗口大小为：%u\n"</span>, ntohs(tcp-&gt;windowSize));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"校验和为：%x\n"</span>, ntohs(tcp-&gt;checksum));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"校验和状态："</span>);</span><br><span class="line">	<span class="keyword">if</span> (calculateChecksum((<span class="keyword">void</span>*)packet_content, (<span class="keyword">void</span>*)&amp;pseudo) == <span class="number">0xFFFF</span>)</span><br><span class="line">	&#123;<span class="built_in">printf</span>(<span class="string">"Good！\n"</span>);&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;<span class="built_in">printf</span>(<span class="string">"Bad！\n"</span>);&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"紧急指针为：%d\n"</span>, ntohs(tcp-&gt;urgentPointer));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n-----------    TCP协议解析结束   ------------\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">UDPAnalysis</span><span class="params">(<span class="keyword">const</span> u_char *packet_content, struct pseudoHeader pseudo)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">UDPHeader</span>* <span class="title">udp</span> = (<span class="title">struct</span> <span class="title">UDPHeader</span>*)<span class="title">packet_content</span>;</span></span><br><span class="line">	<span class="comment">//char sendBuf[100];</span></span><br><span class="line">	<span class="comment">//inet_ntop(AF_INET, (void*)&amp;arp-&gt;srcIP, sendBuf, 16);</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n-----------    UDP协议解析开始   ------------\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"源端口号：%d\n"</span>, ntohs(udp-&gt;srcPort));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"目的端口号：%d\n"</span>, ntohs(udp-&gt;desPort));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"UDP长度为：%d\n"</span>, ntohs(udp-&gt;length));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"校验和为：%d\n"</span>, ntohs(udp-&gt;checksum));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"校验和状态："</span>);</span><br><span class="line">	<span class="keyword">if</span> (calculateChecksum((<span class="keyword">void</span>*)packet_content, (<span class="keyword">void</span>*)&amp;pseudo) == <span class="number">0xFFFF</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Good！\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Bad！\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n-----------    UDP协议解析结束   ------------\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">IPAnalysis</span><span class="params">(<span class="keyword">const</span> u_char *packet_content)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">IPHeader</span>* <span class="title">ip</span> = (<span class="title">struct</span> <span class="title">IPHeader</span>*)<span class="title">packet_content</span>;</span></span><br><span class="line">	<span class="keyword">u16_t</span> headerLength, totalLength;</span><br><span class="line">	<span class="comment">//char sendBuf[100];</span></span><br><span class="line">	<span class="comment">//inet_ntop(AF_INET, (void*)&amp;arp-&gt;srcIP, sendBuf, 16);</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n-----------    IP协议解析开始   ------------\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"版本号：%d\n"</span>, (ip-&gt;vision_Headerlength &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>);</span><br><span class="line">	headerLength = (ip-&gt;vision_Headerlength &amp; <span class="number">0x0F</span>) * <span class="number">4</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"首部长度：%d\n"</span>, headerLength);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"优先域为：%1x%1x%1x\n"</span>, (ip-&gt;servetype &amp; <span class="number">0x80</span>) / <span class="number">8</span>, (ip-&gt;servetype &amp; <span class="number">0x40</span>) / <span class="number">4</span>, (ip-&gt;servetype &amp; <span class="number">0x20</span>) / <span class="number">2</span>);<span class="comment">//1110 000</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"服务类型（最小时延，最大吞吐量，最高可靠性，最小费用）："</span>); </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%1x%1x%1x%1x\n"</span>, (ip-&gt;servetype &amp; <span class="number">0x10</span>) &gt;&gt; <span class="number">4</span>, (ip-&gt;servetype &amp; <span class="number">0x08</span>) / <span class="number">8</span>, (ip-&gt;servetype &amp; <span class="number">0x04</span>) / <span class="number">4</span>, (ip-&gt;servetype &amp; <span class="number">0x02</span>) / <span class="number">2</span>);<span class="comment">//0001 1110</span></span><br><span class="line">	totalLength = ntohs(ip-&gt;length);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"IP报文总长度：%d\n"</span>, totalLength);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"标识：%d\n"</span>, ntohs(ip-&gt;identification));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"标志位（1位保留，2为不分片，3表示后面还有分片）：\n"</span>);</span><br><span class="line">	<span class="keyword">u8_t</span> flag = (ntohs(ip-&gt;flag_offset) &amp; <span class="number">0x0E000</span>) &gt;&gt; <span class="number">13</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%1x%1x%1x\n"</span>, (flag &amp; <span class="number">0x04</span>) &gt;&gt; <span class="number">2</span>, (flag &amp; <span class="number">0x02</span>) &gt;&gt; <span class="number">1</span>, flag &amp; <span class="number">0x01</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"偏移量（单位：8字节）：%d\n"</span>, ntohs(ip-&gt;flag_offset) &amp; <span class="number">0x1FFF</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"生存时间：\n%d\n"</span>, ip-&gt;liveTime);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"高层协议类型为："</span>); </span><br><span class="line">	<span class="keyword">switch</span> (ip-&gt;protocol)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">17</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"UDP协议\n"</span>);<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"TCP协议\n"</span>); <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, ip-&gt;protocol); <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"首部校验和：%x\n"</span>, ntohs(ip-&gt;checksum));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"校验和状态："</span>);</span><br><span class="line">	<span class="keyword">if</span> (calculateChecksum((<span class="keyword">void</span>*)packet_content) == <span class="number">0xFFFF</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Good！\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Bad！\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"发送端IP地址\n"</span>); showIP(ip-&gt;srcIP);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n目的端IP地址\n"</span>); showIP(ip-&gt;desIP);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n-----------    IP协议解析结束   ------------\n"</span>);</span><br><span class="line">	<span class="function">struct pseudoHeader <span class="title">pseudo</span><span class="params">(ip-&gt;srcIP, ip-&gt;desIP, ip-&gt;protocol, totalLength - headerLength)</span></span>;</span><br><span class="line">	<span class="keyword">switch</span> (ip-&gt;protocol)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">17</span>:</span><br><span class="line">		UDPAnalysis(packet_content + headerLength, pseudo);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">6</span>:		</span><br><span class="line">		TCPAnalysis(packet_content + headerLength, pseudo);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%x\n"</span>, ip-&gt;protocol); <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//回调函数：名字可改，按照该函数进行解析数据包协议；参数个数，参数类型，返回值类型都按照WinpCap定义，不能更改</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">packet_callback</span><span class="params">(u_char *user_data, <span class="comment">//传参</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> struct pcap_pkthdr *packet_header, <span class="comment">//成员：时间信息，当前已经用到的数据的长度，数据包的长度</span></span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> u_char *packet_content)</span><span class="comment">//指向捕获到的数据包的开始</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	u_short ethernet_type;                     <span class="comment">/* 以太网类型 */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ether_header</span> *<span class="title">ethernet_protocol</span>;</span>    <span class="comment">/* 以太网协议变量 */</span><span class="comment">//以太帧头结构体指针,指向的结构体类型</span></span><br><span class="line">	u_char *mac_string;                        <span class="comment">/* 以太网地址 */</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> packet_number = <span class="number">1</span>;              <span class="comment">/* 捕获数据包个数 */</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"**************************************************\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"捕获第%d个以太网数据包\n"</span>, packet_number);</span><br><span class="line">	<span class="comment">//char buff[27];</span></span><br><span class="line">	<span class="comment">//printf("捕获时间:\n");</span></span><br><span class="line">	<span class="comment">//printf("%s", ctime_s(buff,26,(const time_t*)&amp;packet_header-&gt;ts.tv_sec));//sprftime</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"数据包长度:\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, packet_header-&gt;len);<span class="comment">//数据包的长度</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"-----------    以太网协议   ------------\n"</span>);</span><br><span class="line">	ethernet_protocol = (struct ether_header*)packet_content;	<span class="comment">/* 获得以太网协议内容 */</span><span class="comment">//按照结构体来使用数据</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"以太网类型:\n"</span>);</span><br><span class="line">	ethernet_type = ntohs(ethernet_protocol-&gt;ether_type);       <span class="comment">/* 获得以太网类型 */</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%04x\n"</span>, ethernet_type);</span><br><span class="line">	<span class="keyword">switch</span> (ethernet_type)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x0800</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"上层协议为IP协议\n"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x0806</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"上层协议是ARP协议\n"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x8035</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"上层协议为RARP协议\n"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mac_string = ethernet_protocol-&gt;ether_shost;<span class="comment">//指向第七个字节</span></span><br><span class="line">	<span class="comment">/* 获得源以太网地址 */</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"源以太网地址: \n%02x:%02x:%02x:%02x:%02x:%02x\n"</span>, *mac_string, *(mac_string + <span class="number">1</span>), *(mac_string + <span class="number">2</span>), *(mac_string + <span class="number">3</span>), *(mac_string + <span class="number">4</span>), *(mac_string + <span class="number">5</span>));</span><br><span class="line">	<span class="comment">/* 获得目的以太网地址 */</span></span><br><span class="line">	mac_string = ethernet_protocol-&gt;ether_dhost;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"目的以太网地址: \n%02x:%02x:%02x:%02x:%02x:%02x\n"</span>, *mac_string, *(mac_string + <span class="number">1</span>), *(mac_string + <span class="number">2</span>), *(mac_string + <span class="number">3</span>), *(mac_string + <span class="number">4</span>), *(mac_string + <span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span> (ethernet_type)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x0800</span>:</span><br><span class="line">		IPAnalysis(packet_content + <span class="keyword">sizeof</span>(struct ether_header));</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x0806</span>:</span><br><span class="line">		ARPAnalysis(packet_content + <span class="keyword">sizeof</span>(struct ether_header));<span class="comment">//Mac帧14</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">0x8035</span>:</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"上层协议为RARP协议\n"</span>);</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"**************************************************\n\n\n"</span>);</span><br><span class="line">	packet_number++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">pcap_t</span> *fp;</span><br><span class="line">	<span class="keyword">char</span> errbuf[PCAP_ERRBUF_SIZE];</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">pcap_if_t</span> *alldevs;</span><br><span class="line">	<span class="keyword">pcap_if_t</span> *d;</span><br><span class="line">	<span class="keyword">int</span> inum;</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">bpf_program</span> <span class="title">bpf_filter</span>;</span>        <span class="comment">/* PBF过滤规则 */</span><span class="comment">//bpf_filter是给机器看的规则</span></span><br><span class="line">	<span class="keyword">char</span> bpf_filter_string[] = <span class="string">""</span>;     <span class="comment">/* 过滤规则字符串 */</span><span class="comment">//按照TCP进行过滤，给人看的，机器不懂</span></span><br><span class="line">	bpf_u_int32 net_mask;                 <span class="comment">/* 掩码地址 */</span></span><br><span class="line">	bpf_u_int32 net_ip;                   <span class="comment">/* 网络地址 */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (pcap_findalldevs(&amp;alldevs, errbuf) == <span class="number">-1</span>)<span class="comment">//找网卡</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"Error in pcap_findalldevs: %s\n"</span>, errbuf);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Print the device list */</span></span><br><span class="line">	<span class="keyword">for</span> (d = alldevs; d; d = d-&gt;next)<span class="comment">//打印所有网卡信息</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d. %s"</span>, ++i, d-&gt;name);</span><br><span class="line">		<span class="keyword">if</span> (d-&gt;description)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" (%s)\n"</span>, d-&gt;description);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" (No description available)\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\nNo interfaces found! Make sure WinPcap is installed.\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Enter the interface number (1-%d):"</span>, i);<span class="comment">//用户选择网卡</span></span><br><span class="line">	scanf_s(<span class="string">"%d"</span>, &amp;inum);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (inum &lt; <span class="number">1</span> || inum &gt; i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\nInterface number out of range.\n"</span>);</span><br><span class="line">		<span class="comment">/* Free the device list */</span></span><br><span class="line">		pcap_freealldevs(alldevs);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-3</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* Jump to the selected adapter */</span></span><br><span class="line">	<span class="keyword">for</span> (d = alldevs, i = <span class="number">0</span>; i &lt; inum - <span class="number">1</span>; d = d-&gt;next, i++);</span><br><span class="line">	pcap_lookupnet(d-&gt;name, &amp;net_ip, &amp;net_mask, errbuf);</span><br><span class="line">	<span class="comment">/* Open the adapter */</span></span><br><span class="line">	<span class="keyword">if</span> ((fp = pcap_open_live(d-&gt;name,		<span class="comment">// name of the device</span></span><br><span class="line">		<span class="number">65536</span>,			<span class="comment">// portion of the packet to capture. It doesn't matter in this case </span></span><br><span class="line">		<span class="number">1</span>,				<span class="comment">// promiscuous mode (nonzero means promiscuous)设置为混杂模式</span></span><br><span class="line">		<span class="number">1000</span>,			<span class="comment">// read timeout</span></span><br><span class="line">		errbuf			<span class="comment">// error buffer</span></span><br><span class="line">	)) == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"\nUnable to open the adapter. %s is not supported by WinPcap\n"</span>, d-&gt;name);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-4</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (pcap_compile(fp, &amp;bpf_filter, bpf_filter_string, <span class="number">0</span>, net_mask) &lt; <span class="number">0</span>)    <span class="comment">/* 编译BPF过滤规则 */</span><span class="comment">//已经打开的捕捉实例（已选中的网卡），编译结果，编译源，</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"\nUnable to compile the packet filter. Check the syntax.\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-5</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	pcap_setfilter(fp, &amp;bpf_filter);    <span class="comment">/* 设置过滤规则 */</span><span class="comment">//加载过滤规则：指定网卡，机器过滤规则</span></span><br><span class="line">	<span class="keyword">if</span> (pcap_datalink(fp) != DLT_EN10MB)</span><br><span class="line">		<span class="keyword">return</span>  <span class="number">-6</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 注册回调函数，循环捕获数据包，然后调用回调函数处理此数据包 */</span></span><br><span class="line">	pcap_loop(fp, <span class="number">-1</span>, packet_callback, <span class="literal">NULL</span>);   <span class="comment">//指定网卡，应捕获的数据包的个数（-1表示无穷），告诉Winpcap应该用哪个回调函数，向回调函数传递的参数</span></span><br><span class="line"></span><br><span class="line">	pcap_close(fp);    <span class="comment">/* 关闭Winpcap操作 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/05/01/网络协议分析器/">网络协议分析器</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">WatsonLuo</a></p>
+        <p><span>发布时间:</span>2019-05-01, 12:38:49</p>
+        <p><span>最后更新:</span>2019-05-01, 12:40:53</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/01/网络协议分析器/" title="网络协议分析器">https://WatsonLuo.github.io/2019/05/01/网络协议分析器/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://WatsonLuo.github.io/2019/05/01/网络协议分析器/　　作者: WatsonLuo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/04/26/hexo添加图片/">
+                    hexo添加图片
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"网络协议分析器　| 罗小芮的发家之路　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/04/26/hexo添加图片/" title="下一篇: hexo添加图片">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/05/01/网络协议分析器/">网络协议分析器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/26/hexo添加图片/">hexo添加图片</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/25/如果在struct-class中动态申请空间，sizeof-的结果/">如果在struct\\class中动态申请空间，sizeof()的结果</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/25/转-在浏览器地址栏输入一个URL后回车，背后会进行哪些技术步骤？/">[转]在浏览器地址栏输入一个URL后回车，背后会进行哪些技术步骤？</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/24/网络协议编辑器/">网络协议编辑器</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/21/2019-4-14百度C-PHP实习生面试/">2019/4/14百度C++/PHP实习生面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/21/搭建博客之路/">搭建博客之路</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/20/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2019 WatsonLuo
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit" title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 21;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(*/ω＼*)" + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(づ￣3￣)づ╭❤～" + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
