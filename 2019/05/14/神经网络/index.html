@@ -15,17 +15,23 @@
 
 
 
-<meta name="description" content="vector拷贝构造函数STL的基本容器类型set和map的内部实现，两者的区别网络三次握手ACK和SYNTCP和UDP的区别一对一无连接有连接编译链接执行，每一步做了什么，会出什么错误运算符重载前自加和后自加的区别（&amp;amp;的位置）引用和指针的区别虚函数，纯虚函数，可不可以实现，实例化，继承类成员变量进行初始化的顺序是与定义顺序相同的，析构相反重写和重载的区别常用的排序算法有哪些，时间和空间复">
+<meta name="description" content="神经网络的起源和发展 1943年，神经元模型（MP模型） 1949年，Hebb提出改变神经元权值的学习规则，即Hebb规则 1982著名模型——Hopfield模型 1986年，多层网络中的反向传播学习算法（BP算法）  人工神经网络定义 人工神经网络有许多简单处理单元组成的网络，每个处理单元可能有一定量的局部存储，单元间有信道相连，信道上载有数据以用于不同的目的 特征： 具有学习能力，它可通过样">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2019&#x2F;4&#x2F;14百度C++&#x2F;PHP实习生面试">
-<meta property="og:url" content="https://WatsonLuo.github.io/2019/04/21/2019-4-14百度C-PHP实习生面试/index.html">
+<meta property="og:title" content="神经网络">
+<meta property="og:url" content="https://WatsonLuo.github.io/2019/05/14/神经网络/index.html">
 <meta property="og:site_name" content="罗小芮的发家之路">
-<meta property="og:description" content="vector拷贝构造函数STL的基本容器类型set和map的内部实现，两者的区别网络三次握手ACK和SYNTCP和UDP的区别一对一无连接有连接编译链接执行，每一步做了什么，会出什么错误运算符重载前自加和后自加的区别（&amp;amp;的位置）引用和指针的区别虚函数，纯虚函数，可不可以实现，实例化，继承类成员变量进行初始化的顺序是与定义顺序相同的，析构相反重写和重载的区别常用的排序算法有哪些，时间和空间复">
+<meta property="og:description" content="神经网络的起源和发展 1943年，神经元模型（MP模型） 1949年，Hebb提出改变神经元权值的学习规则，即Hebb规则 1982著名模型——Hopfield模型 1986年，多层网络中的反向传播学习算法（BP算法）  人工神经网络定义 人工神经网络有许多简单处理单元组成的网络，每个处理单元可能有一定量的局部存储，单元间有信道相连，信道上载有数据以用于不同的目的 特征： 具有学习能力，它可通过样">
 <meta property="og:locale" content="zh_CH">
-<meta property="og:updated_time" content="2019-04-26T14:47:20.683Z">
+<meta property="og:image" content="https://watsonluo.github.io/2019/05/14/神经网络/图片1神经元.png">
+<meta property="og:image" content="https://watsonluo.github.io/2019/05/14/神经网络/图片2响应函数.png">
+<meta property="og:image" content="https://watsonluo.github.io/2019/05/14/神经网络/图片4拓扑分类.png">
+<meta property="og:image" content="https://watsonluo.github.io/2019/05/14/神经网络/图片5信息传递特点分类.png">
+<meta property="og:image" content="https://watsonluo.github.io/2019/05/14/神经网络/图片6学习算法.png">
+<meta property="og:updated_time" content="2019-05-14T13:41:55.452Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2019&#x2F;4&#x2F;14百度C++&#x2F;PHP实习生面试">
-<meta name="twitter:description" content="vector拷贝构造函数STL的基本容器类型set和map的内部实现，两者的区别网络三次握手ACK和SYNTCP和UDP的区别一对一无连接有连接编译链接执行，每一步做了什么，会出什么错误运算符重载前自加和后自加的区别（&amp;amp;的位置）引用和指针的区别虚函数，纯虚函数，可不可以实现，实例化，继承类成员变量进行初始化的顺序是与定义顺序相同的，析构相反重写和重载的区别常用的排序算法有哪些，时间和空间复">
+<meta name="twitter:title" content="神经网络">
+<meta name="twitter:description" content="神经网络的起源和发展 1943年，神经元模型（MP模型） 1949年，Hebb提出改变神经元权值的学习规则，即Hebb规则 1982著名模型——Hopfield模型 1986年，多层网络中的反向传播学习算法（BP算法）  人工神经网络定义 人工神经网络有许多简单处理单元组成的网络，每个处理单元可能有一定量的局部存储，单元间有信道相连，信道上载有数据以用于不同的目的 特征： 具有学习能力，它可通过样">
+<meta name="twitter:image" content="https://watsonluo.github.io/2019/05/14/神经网络/图片1神经元.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -57,7 +63,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>2019/4/14百度C++/PHP实习生面试 | 罗小芮的发家之路</title>
+<title>神经网络 | 罗小芮的发家之路</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -268,11 +274,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-2019-4-14百度C-PHP实习生面试" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-神经网络" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/04/21/2019-4-14百度C-PHP实习生面试/" class="article-date">
-      <time datetime="2019-04-21T10:26:46.000Z" itemprop="datePublished">2019-04-21</time>
+      <a href="/2019/05/14/神经网络/" class="article-date">
+      <time datetime="2019-05-14T05:32:03.000Z" itemprop="datePublished">2019-05-14</time>
 </a>
 
 
@@ -287,7 +293,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      2019/4/14百度C++/PHP实习生面试
+      神经网络
     </h1>
   
 
@@ -296,7 +302,7 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/面试/">面试</a>
+    <a class="article-category-link" href="/categories/人工智能/">人工智能</a>
     </div>
 
 
@@ -308,7 +314,44 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>vector拷贝构造函数<br>STL的基本容器类型<br>set和map的内部实现，两者的区别<br>网络三次握手ACK和SYN<br>TCP和UDP的区别<br>一对一无连接有连接<br>编译链接执行，每一步做了什么，会出什么错误<br>运算符重载前自加和后自加的区别（&amp;的位置）<br>引用和指针的区别<br>虚函数，纯虚函数，可不可以实现，实例化，继承<br>类成员变量进行初始化的顺序是与定义顺序相同的，析构相反<br>重写和重载的区别<br>常用的排序算法有哪些，时间和空间复杂度各是怎么样的<br>TCP的拥塞控制</p>
+        <h1 id="神经网络的起源和发展"><a href="#神经网络的起源和发展" class="headerlink" title="神经网络的起源和发展"></a><strong>神经网络的起源和发展</strong></h1><ul>
+<li>1943年，神经元模型（MP模型）</li>
+<li>1949年，Hebb提出改变神经元权值的学习规则，即Hebb规则</li>
+<li>1982著名模型——Hopfield模型</li>
+<li>1986年，多层网络中的反向传播学习算法（BP算法）</li>
+</ul>
+<h1 id="人工神经网络定义"><a href="#人工神经网络定义" class="headerlink" title="人工神经网络定义"></a><strong>人工神经网络定义</strong></h1><ul>
+<li>人工神经网络有许多简单处理单元组成的网络，每个处理单元可能有一定量的局部存储，单元间有信道相连，信道上载有数据以用于不同的目的</li>
+<li>特征：<ol>
+<li>具有学习能力，它可通过样例进行学习并有对样例进行归纳的能力</li>
+<li>并行性，因为其处理单元间的计算很大程度上是相互独立的。 <img src="/2019/05/14/神经网络/图片1神经元.png" title="神经元">
+其中xi为输入值，wi为权值，f(x)一般为非线性。</li>
+</ol>
+</li>
+</ul>
+<img src="/2019/05/14/神经网络/图片2响应函数.png" title="响应函数">
+<ol>
+<li>阈值模型：<br> f(x)=x/abs(x)</li>
+<li>Sigmoid函数模型：
+</li>
+</ol>
+<h1 id="网络模型分类"><a href="#网络模型分类" class="headerlink" title="网络模型分类"></a><strong>网络模型分类</strong></h1><ol>
+<li>按照网络的拓扑结构：</li>
+</ol>
+<img src="/2019/05/14/神经网络/图片4拓扑分类.png" title="拓扑分类">
+<p>第二种较好，现常用</p>
+<ol start="2">
+<li>按照信息传递特点：<img src="/2019/05/14/神经网络/图片5信息传递特点分类.png" title="信息传递特点分类">
+</li>
+</ol>
+<h1 id="神经网络的学习"><a href="#神经网络的学习" class="headerlink" title="神经网络的学习"></a><strong>神经网络的学习</strong></h1><ol>
+<li>学习算法：<img src="/2019/05/14/神经网络/图片6学习算法.png" title="学习算法">
+也称有/无监督学习：是否存在标准答案，通过对比标准答案得到反馈<br>现常用是半监督，有监督的反馈好，但对于收集大量数据不利，无监督反馈不好，但对于数据要求低。</li>
+</ol>
+<h1 id="BP算法流程"><a href="#BP算法流程" class="headerlink" title="BP算法流程"></a><strong>BP算法流程</strong></h1><ul>
+<li>正向传播FP(求损失)</li>
+<li>反向传播BP</li>
+</ul>
 
       
     </div>
@@ -317,13 +360,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/04/21/2019-4-14百度C-PHP实习生面试/">2019/4/14百度C++/PHP实习生面试</a></p>
+        <p><span>本文标题:</span><a href="/2019/05/14/神经网络/">神经网络</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">WatsonLuo</a></p>
-        <p><span>发布时间:</span>2019-04-21, 18:26:46</p>
-        <p><span>最后更新:</span>2019-04-26, 22:47:20</p>
+        <p><span>发布时间:</span>2019-05-14, 13:32:03</p>
+        <p><span>最后更新:</span>2019-05-14, 21:41:55</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/04/21/2019-4-14百度C-PHP实习生面试/" title="2019/4/14百度C++/PHP实习生面试">https://WatsonLuo.github.io/2019/04/21/2019-4-14百度C-PHP实习生面试/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://WatsonLuo.github.io/2019/04/21/2019-4-14百度C-PHP实习生面试/　　作者: WatsonLuo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/05/14/神经网络/" title="神经网络">https://WatsonLuo.github.io/2019/05/14/神经网络/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://WatsonLuo.github.io/2019/05/14/神经网络/　　作者: WatsonLuo" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -336,15 +379,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/04/24/网络协议编辑器/">
-                    网络协议编辑器
+                <a href="/2019/05/30/软件工程/">
+                    软件工程
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/04/21/搭建博客之路/">
-                    搭建博客之路
+                <a href="/2019/05/07/人工智能入门笔记3/">
+                    人工智能入门笔记3
                 </a>
             </div>
         
@@ -356,7 +399,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#神经网络的起源和发展"><span class="toc-number">1.</span> <span class="toc-text">神经网络的起源和发展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#人工神经网络定义"><span class="toc-number">2.</span> <span class="toc-text">人工神经网络定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网络模型分类"><span class="toc-number">3.</span> <span class="toc-text">网络模型分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#神经网络的学习"><span class="toc-number">4.</span> <span class="toc-text">神经网络的学习</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BP算法流程"><span class="toc-number">5.</span> <span class="toc-text">BP算法流程</span></a></li></ol>
         
     </div>
     <style>
@@ -392,7 +435,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"2019/4/14百度C++/PHP实习生面试　| 罗小芮的发家之路　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"神经网络　| 罗小芮的发家之路　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -412,7 +455,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/04/24/网络协议编辑器/" title="上一篇: 网络协议编辑器">
+            <a href="/2019/05/30/软件工程/" title="上一篇: 软件工程">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -420,7 +463,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/04/21/搭建博客之路/" title="下一篇: 搭建博客之路">
+            <a href="/2019/05/07/人工智能入门笔记3/" title="下一篇: 人工智能入门笔记3">
                 <i class="fa fa-angle-right"></i>
             </a>
         
